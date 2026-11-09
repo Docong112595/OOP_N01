@@ -1,13 +1,14 @@
-# OOP_N01
 
-# Bai thuc hanh 01
+OOP_N01
 
-BÀI TẬP THỰC HÀNH OOP
 
-HỆ THỐNG QUẢN LÝ BÃI ĐỖ XE – GIAI ĐOẠN 1
+Bai thuc hanh 01
 
-Giảng viên: Nguyễn Hạnh Phúc - FIT - VMU
-Ngôn ngữ lập trình: C++ (Chuẩn C++11 trở lên)
+
+BÀI TẬP THỰC HÀNH OOP: HỆ THỐNG QUẢN LÝ BÃI ĐỖ XE
+
+• Giảng viên: Nguyễn Hạnh Phúc - FIT - VMU
+• Ngôn ngữ lập trình: C++ (Chuẩn C++11 trở lên)
 
 Đề bài chung cho tất cả các giai đoạn
 
@@ -19,16 +20,19 @@ Sinh viên sẽ thiết kế và xây dựng một hệ thống quản lý bãi 
 • Thống kê và báo cáo dữ liệu.
 Yêu cầu cốt lõi: Xây dựng các lớp đối tượng (ParkingLot, Vehicle, SystemInterface) và xử lý các thao tác thêm, xóa, hiển thị thông tin một cách có tổ chức, đúng đắn về mặt thiết kế OOP.
 
-1. MỤC TIÊU & YÊU CẦU KỸ THUẬT
+GIAI ĐOẠN 1: BIẾN ĐƠN VÀ ĐÓNG GÓI CƠ BẢN
+
+
+1. Mục tiêu & Yêu cầu kỹ thuật
 
 • Chủ đề: Đóng gói (Encapsulation), Thiết kế Lớp (Class), Biến đơn và Luồng điều khiển cơ bản.
 • Mục tiêu: Thiết kế ứng dụng console hướng đối tượng quản lý bãi đỗ xe cho một công ty.
 • Hạn chế bắt buộc (Strict Constraints):
-	1. TÍNH ĐÓNG GÓI: Tất cả các thuộc tính (instance variables) của lớp phải ở phạm vi private. Tương tác dữ liệu bắt buộc thông qua các phương thức public (Getters, Setters, Constructors).
+	1. TÍNH ĐÓNG GÓI: Tất cả các thuộc tính của lớp phải ở phạm vi private. Tương tác dữ liệu bắt buộc thông qua các phương thức public (Getters, Setters, Constructors).
 	2. KHÔNG SỬ DỤNG MẢNG VÀ CON TRỎ: Tuyệt đối KHÔNG sử dụng Mảng tĩnh (C-style array), Mảng C++ (std::array), Mảng động/Vector (std::vector), hay Con trỏ (pointers / new / delete).
 	3. LƯU TRỮ: Quản lý số lượng đối tượng cố định thông qua các biến đối tượng đơn lẻ và biến cờ trạng thái (boolean flags).
 
-2. CẤU TRÚC VÀ THIẾT KẾ CÁC LỚP (CLASS SPECIFICATIONS)
+2. Cấu trúc và Thiết kế các lớp (Class Specifications)
 
 Chương trình gồm 3 lớp chính:
 
@@ -51,12 +55,12 @@ Chương trình gồm 3 lớp chính:
 
 • Thuộc tính (private):
 	• int parkID: Mã định danh bãi đỗ xe.
-	• char size: Kích thước bãi đỗ ('S' - Nhỏ, 'M' - Trung bình, 'L' - Lớn):
+	• char size: Kích thước bãi đỗ ('S' - Nhỏ, 'M' - Trung bình, 'L' - Lớn).
 		• S (Small): Chứa tối đa 1 xe (vehicle1).
 		• M (Medium): Chứa tối đa 2 xe (vehicle1, vehicle2).
 		• L (Large): Chứa tối đa 3 xe (vehicle1, vehicle2, vehicle3).
-	• Vehicle vehicle1, Vehicle vehicle2, Vehicle vehicle3: Các biến đối tượng xe đơn lẻ.
-	• bool hasVehicle1, bool hasVehicle2, bool hasVehicle3: Cờ kiểm tra trạng thái ô trống.
+	• Vehicle vehicle1, vehicle2, vehicle3: Các biến đối tượng xe đơn lẻ.
+	• bool hasVehicle1, hasVehicle2, hasVehicle3: Cờ kiểm tra trạng thái ô trống.
 • Phương thức (public):
 	• Constructor mặc định và Constructor khởi tạo bãi đỗ theo parkID và size.
 	• bool addVehicle(const Vehicle& v): Thêm xe vào ô trống phù hợp theo sức chứa của size.
@@ -66,13 +70,13 @@ Chương trình gồm 3 lớp chính:
 2.3 Lớp 3: SystemInterface (Giao diện và điều hành hệ thống)
 
 • Thuộc tính (private):
-	• ParkingLot parkingLot1, ParkingLot parkingLot2, ParkingLot parkingLot3: Quản lý tối đa 3 bãi đỗ xe đơn lẻ.
-	• bool hasLot1, bool hasLot2, bool hasLot3: Cờ theo dõi bãi đỗ tồn tại.
+	• ParkingLot parkingLot1, parkingLot2, parkingLot3: Quản lý tối đa 3 bãi đỗ xe đơn lẻ.
+	• bool hasLot1, hasLot2, hasLot3: Cờ theo dõi bãi đỗ tồn tại.
 • Phương thức (public):
 	• Lớp duy nhất chứa hàm main() và xử lý nhập/xuất Console (std::cin, std::cout).
 	• void runMenu(): Hiển thị menu và điều phối các chức năng chương trình.
 
-3. QUY TẮC TÍNH PHÍ ĐỖ XE (PARKING FEE RULES)
+3. Quy tắc tính phí đỗ xe (Parking Fee Rules)
 
 Phí đỗ xe dựa trên Loại xe, Thời gian vào bãi (entryTime) và Thời lượng đỗ (parkingDuration):
 1. Biểu phí cơ bản theo giờ:
@@ -86,10 +90,10 @@ Phí đỗ xe dựa trên Loại xe, Thời gian vào bãi (entryTime) và Thờ
 	• Trong 2 giờ đầu tiên:
 		• Nếu vào Giờ cao điểm: Áp dụng mức tăng 30% (+30%) so với đơn giá chuẩn.
 		• Nếu vào Giờ thấp điểm: Áp dụng mức giảm 5% (-5%) so với đơn giá chuẩn.
-	• Từ giờ thứ 3 trở đi (áp dụng cho các giờ từ giờ thứ 3):
+	• Từ giờ thứ 3 trở đi:
 		• Giảm giá 10% (-10%) cho đơn giá theo giờ, bất kể vào giờ cao điểm hay thấp điểm.
 
-4. YÊU CẦU CHỨC NĂNG MENU (MAIN MENU REQUIREMENTS)
+4. Yêu cầu chức năng Menu (Main Menu Requirements)
 
 Chương trình hiển thị menu lặp lại liên tục cho đến khi người dùng chọn thoát:
 1. Tạo Bãi đỗ xe mới: Nhập parkID và size ('S', 'M', 'L'). Tối đa 3 bãi. Kiểm tra trùng lặp ID hoặc vượt quá sức chứa.
@@ -100,18 +104,14 @@ Chương trình hiển thị menu lặp lại liên tục cho đến khi ngườ
 6. Hiển thị danh sách xe theo bãi cụ thể: Nhập parkID, in ra thông tin chi tiết từng xe trong bãi đó.
 7. Liệt kê xe theo loại phương tiện: Nhập loại xe (Car/Motorcycle/Bicycle), in danh sách các xe khớp loại và bãi đỗ tương ứng.
 8. Xem báo cáo tóm tắt phí đỗ xe trung bình: Tính và hiển thị phí đỗ xe trung bình cho từng loại xe trên toàn hệ thống và phân tích chi tiết theo từng bãi đỗ.
-9. Thoát chương trình
+9. Thoát chương trình.
+
+GIAI ĐOẠN 2: NÂNG CẤP THÀNH MẢNG TĨNH VÀ THUẬT TOÁN XỬ LÝ
 
 
-BÀI TẬP THỰC HÀNH OOP 
- HỆ THỐNG QUẢN LÝ BÃI ĐỖ XE – GIAI ĐOẠN 2
+1. Mục tiêu & Yêu cầu kỹ thuật
 
-• Giảng viên: Nguyễn Hạnh Phúc - FIT - VMU
-• Ngôn ngữ lập trình: C++ (Chuẩn C++11 trở lên)
 • Chủ đề: Mảng tĩnh làm thuộc tính Lớp (Fixed Member Arrays), Quản lý Kích thước Vật lý vs Kích thước Logic, Thuật toán Dồn mảng và Xử lý Trùng lặp.
-
-1 MỤC TIÊU & YÊU CẦU KỸ THUẬT
-
 • Mục tiêu: Nâng cấp hệ thống quản lý bãi đỗ xe từ Giai đoạn 1 bằng cách thay thế toàn bộ các biến đối tượng lẻ (vehicle1, vehicle2, vehicle3 và lot1, lot2, lot3) bằng các Mảng tĩnh (Fixed-size Arrays).
 • Hạn chế bắt buộc (Strict Constraints):
 	1. ĐÓNG GÓI VÀ MẢNG TĨNH: Tất cả mảng lưu trữ phải là thuộc tính private có kích thước cố định (C-style array hoặc std::array).
@@ -121,7 +121,7 @@ BÀI TẬP THỰC HÀNH OOP
 	3. THUẬT TOÁN DỒN MẢNG: Khi xóa một xe hoặc một bãi đỗ, bắt buộc phải dồn dịch các phần tử phía sau sang trái để danh sách dữ liệu trong mảng luôn liên tục từ chỉ số 0 đến currentCount - 1.
 	4. CHƯA SỬ DỤNG CON TRỎ VÀ BỘ NHỚ ĐỘNG: Tuyệt đối KHÔNG dùng con trỏ (*), cấp phát động (new/delete), hay std::vector (các nội dung này sẽ triển khai ở Giai đoạn 3 và Giai đoạn 5).
 
-2 CẤU TRÚC VÀ THIẾT KẾ NÂNG CẤP CÁC LỚP (CLASS SPECIFICATIONS)
+2. Cấu trúc và Thiết kế nâng cấp các lớp (Class Specifications)
 
 
 2.1 Lớp 1: Vehicle (Giữ nguyên cấu trúc đóng gói từ Giai đoạn 1)
@@ -157,19 +157,17 @@ BÀI TẬP THỰC HÀNH OOP
 	• bool isVehicleIDExists(int vID) const: Duyệt qua toàn bộ các bãi đỗ trong mảng để kiểm tra ID xe có bị trùng lặp hay không.
 	• int generateRandomID(): Hàm phụ trợ tự động sinh ID ngẫu nhiên bằng rand() khi người dùng nhập trùng ID.
 
-3 CÁC QUY TẮC BỔ SUNG & XỬ LÝ MẢNG NÂNG CẤP
+3. Các quy tắc bổ sung & Xử lý mảng nâng cấp
 
-1. Quy tắc xếp xe tự động vào Mảng Bãi đỗ:
-	• Khi thêm một xe mới, hệ thống tự động tìm bãi đỗ đầu tiên còn vị trí trống trong mảng parkingLots để xếp xe vào. Nếu tất cả các bãi đỗ hiện có đều đã đầy, thông báo cảnh báo ra màn hình.
+1. Quy tắc xếp xe tự động vào Mảng Bãi đỗ: Khi thêm một xe mới, hệ thống tự động tìm bãi đỗ đầu tiên còn vị trí trống trong mảng parkingLots để xếp xe vào. Nếu tất cả các bãi đỗ hiện có đều đã đầy, thông báo cảnh báo ra màn hình.
 2. Quy tắc xử lý Trùng lặp ID (Duplicate ID Handling):
 	• Trùng ID Bãi đỗ: Nếu người dùng nhập parkID đã tồn tại trong mảng parkingLots, hiển thị cảnh báo và tự động gán một ID ngẫu nhiên cho bãi đỗ đó.
 	• Trùng ID Xe: Nếu người dùng nhập vehicleID đã tồn tại ở bất kỳ bãi đỗ nào trong hệ thống, hiển thị cảnh báo và tự động gán một ID ngẫu nhiên cho xe đó.
-3. Quy tắc Kiểm tra tính hợp lệ dữ liệu (Input Validation):
-	• Nếu người dùng nhập sai kiểu dữ liệu (ví dụ: nhập chữ vào biến số), chương trình phải bắt lỗi std::cin.fail(), xóa cờ lỗi std::cin.clear(), loại bỏ bộ đệm std::cin.ignore() và yêu cầu nhập lại một cách an toàn.
+3. Quy tắc Kiểm tra tính hợp lệ dữ liệu (Input Validation): Nếu người dùng nhập sai kiểu dữ liệu (ví dụ: nhập chữ vào biến số), chương trình phải bắt lỗi std::cin.fail(), xóa cờ lỗi std::cin.clear(), loại bỏ bộ đệm std::cin.ignore() và yêu cầu nhập lại một cách an toàn.
 
-4 DANH SÁCH CHỨC NĂNG MENU (MAIN MENU)
+4. Danh sách chức năng Menu (Main Menu)
 
-Chương trình hiển thị menu 9 chức năng chính (chưa tích hợp Đọc/Ghi File, chức năng này sẽ hoàn thiện ở bài kết thúc):
+Chương trình hiển thị menu 9 chức năng chính (chưa tích hợp Đọc/Ghi File):
 1. Tạo Bãi đỗ xe mới: Kiểm tra mảng parkingLots đã đạt MAX_LOTS (10 bãi) chưa. Nếu chưa, nhận parkID và size, kiểm tra trùng ID để gán ID ngẫu nhiên nếu cần.
 2. Thêm xe vào bãi đỗ: Nhập vehicleID, vehicleType, entryTime, parkingDuration. Kiểm tra trùng ID xe toàn hệ thống. Tự động xếp xe vào bãi đỗ còn chỗ trống đầu tiên trong mảng.
 3. Xóa một Bãi đỗ xe: Nhập parkID, tìm vị trí trong mảng parkingLots, xóa và dồn mảng bãi đỗ.
